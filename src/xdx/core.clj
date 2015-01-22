@@ -2,9 +2,10 @@
   (:gen-class))
 
 (defn roll-dice
-  "Rolls a 'dice' number of dice with 'sides' sides."
-  [dice sides]
-  (reduce + (repeatedly dice #(inc (rand-int sides)))))
+  "Rolls a 'dice' number of dice with 'sides' sides. If only one arg, rolls 1 'sides' die."
+  ([sides] (roll-dice 1 sides))
+  ([dice sides]
+   (reduce + (repeatedly dice #(inc (rand-int sides))))))
 
 (defn roll-explode
   "Rolls a 'dice' number of dice with 'sides' sides, with the dice _exploding_ if a max val is rolled."
