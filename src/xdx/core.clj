@@ -4,7 +4,7 @@
 
 (defn parse-dice
   [fistful]
-  (let [fistful (str/replace fistful #"[^a-zA-Z0-9]" "")
+  (let [fistful (str/lower-case (str/replace fistful #"[^a-zA-Z0-9]" ""))
         digits (str/split fistful #"[a-zA-Z]")
         dietype (str/replace fistful #"[0-9]" "")]
     (list 
@@ -13,8 +13,6 @@
       (try (Integer. (last digits))
              (catch NumberFormatException e
                (last digits))))))
-      ;(if (= 2 (count digits))
-       ;(Integer. (second digits))))))
 
 (defn roll-dice
   "Rolls a 'dice' number of dice with 'sides' sides. If only one arg, rolls 1 'sides' die."
